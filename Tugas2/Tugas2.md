@@ -1,0 +1,5 @@
+![Tampilan Create/POST](ss/Create.png)
+![Tampilan Read/GET](ss/Read.png)
+![Tampilan Update/PUT](ss/Update.png)
+![Tampilan Delete/DELETE](ss/Delete.png)
+![Tampilan hasil setelah DELETE](ss/HasilDariDelete.png)
