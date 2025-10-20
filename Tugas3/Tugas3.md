@@ -1,0 +1,6 @@
+![Tampilan POST Check-in](ss/PostCheck-in.png)
+![Tampilan POST Check-in setelah sudah Check-in sebelumnya](ss/PostCheck-in1.png)
+![Tampilan POST Check-out](ss/PostCheck-out.png)
+![Tampilan POST Check-out sebelum Check-in](ss/PostCheck-out1.png)
+![Tampilan hasil GET Reports Daily Admin](ss/ReportsDailyAdmin.png)
+![Tampilan hasil GET Reports Daily Non-Admin](ss/ReportsDailyNonAdmin.png)
