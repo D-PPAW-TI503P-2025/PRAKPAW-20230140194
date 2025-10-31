@@ -1,0 +1,6 @@
+![Tampilan DELETE Data ](ss/DeleteData.png)
+![Tampilan PUT Data yang Valid](ss/UpdateData.png)
+![Tampilan PUT Data yang Invalid ](ss/UpdateInvalid.png)
+![Tampilan Search Reports By Nama](ss/SearchNama.png)
+![Tampilan Search Reports By Tangal sampe 31 oktober](ss/SearchTanggal31.png)
+![Tampilan Search Reports By Tangal sampe 30 oktober](ss/SearchTanggal30.png)
