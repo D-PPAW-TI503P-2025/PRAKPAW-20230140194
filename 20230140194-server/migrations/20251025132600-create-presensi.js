@@ -11,11 +11,13 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      nama: {
-        type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Users",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       checkIn: {
         allowNull: false,
@@ -32,6 +34,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      latitude: {
+        type: Sequelize.DECIMAL(10, 7),
+        allowNull: false,
+      },
+      longitude: {
+        type: Sequelize.DECIMAL(10, 7),
+        allowNull: false,
       }
     });
   },

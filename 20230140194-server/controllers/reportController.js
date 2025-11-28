@@ -1,70 +1,40 @@
-"use strict";
+const { Presensi, User } = require("../models");
+const { Op } = require("sequelize");
 
-const { Presensi, sequelize } = require("../models");
 const { format } = require("date-fns-tz");
-const { Op, col, fn } = require("sequelize");
-const timeZone = "Asia/Jakarta";
 
 exports.getDailyReport = async (req, res) => {
     try {
-        const { nama, tanggalMulai, tanggalSelesai } = req.query;
-        let whereClause = {};
+        const { nama } = req.query;
 
-        // Filter berdasarkan nama
+        let options = {
+            include: [
+                {
+                    model: User,
+                    as: "user",
+                    attributes: ["nama"],
+                },
+            ],
+        };
+
         if (nama) {
-            whereClause.nama = { [Op.like]: `%${nama}%` };
-        }
-
-        // Filter tanggal (gunakan DATE agar hanya cek tanggal, bukan jam)
-        if (tanggalMulai && tanggalSelesai) {
-            whereClause = {
-                ...whereClause,
-                [Op.and]: [
-                    sequelize.where(fn('DATE', col('checkIn')), '>=', tanggalMulai),
-                    sequelize.where(fn('DATE', col('checkIn')), '<=', tanggalSelesai),
-                ],
-            };
-        } else if (tanggalMulai) {
-            whereClause = {
-                ...whereClause,
-                [Op.and]: [sequelize.where(fn('DATE', col('checkIn')), '>=', tanggalMulai)],
-            };
-        } else if (tanggalSelesai) {
-            whereClause = {
-                ...whereClause,
-                [Op.and]: [sequelize.where(fn('DATE', col('checkIn')), '<=', tanggalSelesai)],
+            // Baris ini akan error jika 'Op' tidak diimpor
+            options.include[0].where = {
+                nama: {
+                    [Op.like]: `%${nama}%`,
+                },
             };
         }
 
-        // Ambil data
-        const records = await Presensi.findAll({
-            where: whereClause,
-            order: [["checkIn", "ASC"]],
-        });
-
-        // Format hasil
-        const formattedData = records.map((record) => ({
-            id: record.id,
-            userId: record.userId,
-            nama: record.nama,
-            checkIn: record.checkIn
-                ? format(record.checkIn, "yyyy-MM-dd HH:mm:ssXXX", { timeZone })
-                : null,
-            checkOut: record.checkOut
-                ? format(record.checkOut, "yyyy-MM-dd HH:mm:ssXXX", { timeZone })
-                : null,
-        }));
+        const records = await Presensi.findAll(options);
 
         res.json({
-            message: "Laporan presensi berhasil diambil.",
-            total: formattedData.length,
-            data: formattedData,
+            reportDate: new Date().toLocaleDateString(),
+            data: records,
         });
     } catch (error) {
-        console.error("Error getDailyReport:", error);
-        res.status(500).json({
-            message: "Gagal mengambil laporan presensi.",
-            error: error.message,
-        });
+        res
+            .status(500)
+            .json({ message: "Gagal mengambil laporan", error: error.message });
     }
 };

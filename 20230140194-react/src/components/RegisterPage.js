@@ -87,8 +87,8 @@ const RegisterPage = () => {
                         type="submit"
                         disabled={loading}
                         className={`w-full py-2 rounded-lg text-white transition ${loading
-                                ? "bg-blue-300 cursor-not-allowed"
-                                : "bg-blue-600 hover:bg-blue-700"
+                            ? "bg-blue-300 cursor-not-allowed"
+                            : "bg-blue-600 hover:bg-blue-700"
                             }`}
                     >
                         {loading ? "Memproses..." : "Daftar Sekarang"}

@@ -1,0 +1,8 @@
+![Tampilan endpoint checkin ](checkin.png)
+![Tampilan endpoint checkout](checkout.png)
+![Tampilan Laporan Presensi Untuk Admin ](TampilanLaporanAdmin.png)
+![Tampilan Database Presensi](TablePresensi.png)
+![Tampilan Checkin Mahasiswa](TampilanCheckinMahasiswa.png)
+![Tampilan Checkout Mahasiswa](TampilanCheckoutMahasiswa.png)
+![Tampilan Checkin Admin](TampilanCheckinAdmin.png)
+![Tampilan Checkout Admin](TampilanCheckoutAdmin.png)
