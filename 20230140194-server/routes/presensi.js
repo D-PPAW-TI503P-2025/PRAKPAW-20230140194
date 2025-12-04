@@ -7,11 +7,7 @@ const laporanController = require("../controllers/reportController");
 const permissionMiddleware = require("../middleware/permissionMiddleware");
 
 // CHECK-IN
-router.post(
-    "/check-in",
-    permissionMiddleware.authenticateToken,
-    presensiController.CheckIn
-);
+router.post('/check-in', [permissionMiddleware.authenticateToken, presensiController.upload.single('image')],presensiController.CheckIn);
 
 // CHECK-OUT
 router.post(
